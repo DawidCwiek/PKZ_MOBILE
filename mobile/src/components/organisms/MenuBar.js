@@ -5,6 +5,7 @@ import Heading from '../atoms/Heading';
 import StyledImage from '../atoms/StyledImage';
 import kebab from '../../../assets/icons/kebab.png';
 import StyledButton from '../atoms/StyledButton';
+import LogOutButton from '../molecules/LogOutButton';
 
 const MenuBarWraper = styled.View`
     height: 6%;
@@ -49,7 +50,7 @@ const MenuBar = () => {
                 <Heading>Menu</Heading>
             </MenuWraper>
             <ButtonWraper>
-                <Button title="Log out" color="#ffd829"/>
+                <LogOutButton label='Log out'/>
             </ButtonWraper>
         </MenuBarWraper>
     )

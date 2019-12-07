@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { View } from 'react-native';
-import styled from 'styled-components';
+import styled from 'styled-components/native';
 import MenuTemplate from '../templates/MenuTemplate';
 import Heading from '../components/atoms/Heading';
 import MenuBar from '../components/organisms/MenuBar';
