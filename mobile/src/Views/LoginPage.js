@@ -28,7 +28,7 @@ const StyledHeading = styled(Heading)`
   margin: 0 0 30px 0;
 `;
 
-export default LoginPage = () => {
+const LoginPage = () => {
     return(
         <AuthTemplate>
             <StyledHeading>Sign in</StyledHeading>
@@ -40,4 +40,6 @@ export default LoginPage = () => {
         </AuthTemplate>
     );
 }
+
+export default LoginPage;
 

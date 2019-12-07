@@ -1,9 +1,12 @@
-import React from 'react';
-import { Button } from 'react-native';
+import React, { Component } from 'react';
+import { View, Text, TouchableOpacity } from 'react-native';
 import styled from 'styled-components';
+import Heading from './Heading';
 
-
-export default StyledButton = styled.Button`
-    background-color: #ffd829;
-    color: black;
-`;
+export default class StyledButton extends Component{
+    render () {
+        return (
+            
+        )
+    }
+}

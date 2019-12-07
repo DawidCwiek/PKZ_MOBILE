@@ -2,7 +2,7 @@ import React from 'react';
 import { View, Image } from 'react-native';
 import styled from 'styled-components';
 import Heading from '../components/atoms/Heading';
-import kebabIcon from '../../assets/icons/kebab.svg';
+import kebab from '../../assets/icons/kebab.png';
 
 const StyledWraper = styled.View`
     background-color: #ffd829;
@@ -38,7 +38,7 @@ const AuthTemplate = ({ children }) => (
     <StyledWraper>
         <StyledLogo>
             <Heading big>Zahir</Heading>
-            <StyledImg source = {kebabIcon} />
+            <StyledImg source = {kebab} />
         </StyledLogo>
         <StyledAuthCard>{ children }</StyledAuthCard>
     </StyledWraper>
