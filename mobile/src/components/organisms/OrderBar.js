@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { View, Text, Button } from 'react-native';
 import styled from 'styled-components';
+import StyledButton from '../atoms/StyledButton';
 
 const OrderBarWraper = styled.View`
     display: flex;
@@ -65,9 +66,8 @@ const OrderBar = () => {
 
             </OrderView>
             <ButtonsWrapper>
-                <ButtonWrapper><Button title="Cancel" color="#A93226"/></ButtonWrapper>
-                <ButtonWrapper><Button title="Accept" color="#229954" /></ButtonWrapper>
-                
+                <ButtonWrapper><StyledButton label="Anuluj" color="#A93226"/></ButtonWrapper>
+                <ButtonWrapper><StyledButton label="Akceptuj" color="#229954" /></ButtonWrapper>
             </ButtonsWrapper>
         </OrderBarWraper>
     )

@@ -12,6 +12,7 @@ const StyledWrapper = styled.TouchableOpacity`
 
 const StyledLabel = styled.Text`
   color: ${props => props.fontColor || 'black'};
+  font-size: ${props => props.fontSize || '12'};
   font-weight: bold;
 `;
 
@@ -25,6 +26,7 @@ export default class StyledButton extends Component{
       >
         <StyledLabel
           fontColor={this.props.fontColor}
+          fontSize={this.props.fontSize}
         >
           {this.props.label}
         </StyledLabel>

@@ -50,7 +50,7 @@ const MenuBar = () => {
                 <Heading>Menu</Heading>
             </MenuWraper>
             <ButtonWraper>
-                <LogOutButton label='Log out'/>
+                <LogOutButton label='Wyloguj'/>
             </ButtonWraper>
         </MenuBarWraper>
     )
