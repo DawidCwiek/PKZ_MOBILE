@@ -17,10 +17,13 @@ const PaymentBar = styled.View`
     background-color: #ffd829;
     display: flex;
     flex-direction: row;
+    justify-content: space-between;
+    border-width: 1;
     border-radius: 10;
     padding-top: 2px;
     padding-bottom: 2px;
     padding-left: 5px;
+    padding-right: 5px;
 `;
 
 const OrderView = styled.View`
@@ -28,6 +31,7 @@ const OrderView = styled.View`
     display: flex;
     flex: 2;
     flex-direction: row;
+    border-width: 1;
     border-radius: 10;
     margin: 2px;
 `;
@@ -54,6 +58,13 @@ const Label = styled.Text`
     font-weight: 500;
 `;
 
+const handleAccept = () => {
+    alert("Akceptowano zamówienie")
+}
+
+const handleCancel = () => {
+    alert("Anulowano zamówienie")
+}
 
 
 const OrderBar = () => {
@@ -61,13 +72,14 @@ const OrderBar = () => {
         <OrderBarWraper>
             <PaymentBar>
                 <Label size='16'>Do zapłaty:</Label>
+                <Label size='16'>0.00 zł</Label>
             </PaymentBar>
             <OrderView>
 
             </OrderView>
             <ButtonsWrapper>
-                <ButtonWrapper><StyledButton label="Anuluj" color="#A93226"/></ButtonWrapper>
-                <ButtonWrapper><StyledButton label="Akceptuj" color="#229954" /></ButtonWrapper>
+                <ButtonWrapper><StyledButton label="Anuluj" color="#A93226" fontSize='16' border onPress={handleCancel} /></ButtonWrapper>
+                <ButtonWrapper><StyledButton label="Akceptuj" color="#229954" fontSize='16' border onPress={handleAccept} /></ButtonWrapper>
             </ButtonsWrapper>
         </OrderBarWraper>
     )

@@ -4,8 +4,10 @@ import styled from 'styled-components';
 import Heading from '../atoms/Heading';
 import StyledImage from '../atoms/StyledImage';
 import kebab from '../../../assets/icons/kebab.png';
+import logOut from '../../../assets/icons/logOut.png';
 import StyledButton from '../atoms/StyledButton';
 import LogOutButton from '../molecules/LogOutButton';
+import ImageButton from '../atoms/ImageButton';
 
 const MenuBarWraper = styled.View`
     height: 6%;
@@ -40,17 +42,21 @@ const ButtonWraper = styled.View`
     align-items: flex-end;
 `;
 
+const handleLogOut = () => {
+    alert("Zostałeś wylogowany")
+}
+
 const MenuBar = () => {
     return (
         <MenuBarWraper>
             <LogoWraper>
-                <StyledImage source = {kebab}></StyledImage>
+                <StyledImage source = {kebab} />
             </LogoWraper>
             <MenuWraper>
                 <Heading>Menu</Heading>
             </MenuWraper>
             <ButtonWraper>
-                <LogOutButton label='Wyloguj'/>
+                <ImageButton source={logOut} onPress={handleLogOut}/>
             </ButtonWraper>
         </MenuBarWraper>
     )

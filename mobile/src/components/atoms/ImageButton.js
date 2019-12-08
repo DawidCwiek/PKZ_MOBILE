@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-import { View, Text, TouchableOpacity } from 'react-native';
+import { View, Text, Image, TouchableOpacity } from 'react-native';
 import styled from 'styled-components/native';
+import StyledImage from './StyledImage';
 
 const StyledWrapper = styled.TouchableOpacity`
   background-color: ${props => props.color || '#ffd829'};
@@ -11,14 +12,8 @@ const StyledWrapper = styled.TouchableOpacity`
   align-items: center;
 `;
 
-const StyledLabel = styled.Text`
-  color: ${props => props.fontColor || 'black'};
-  font-size: ${props => props.fontSize || '12'};
-  font-weight: bold;
-`;
 
-
-export default class StyledButton extends Component{
+export default class ImageButton extends Component{
   render(){
     return(
       <StyledWrapper
@@ -26,12 +21,7 @@ export default class StyledButton extends Component{
         border={this.props.border}
         onPress={this.props.onPress}
       >
-        <StyledLabel
-          fontColor={this.props.fontColor}
-          fontSize={this.props.fontSize}
-        >
-          {this.props.label}
-        </StyledLabel>
+        <StyledImage source={this.props.source} />
       </StyledWrapper>
     )
   }
