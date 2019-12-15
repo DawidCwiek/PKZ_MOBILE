@@ -78,8 +78,24 @@ const OrderBar = () => {
 
             </OrderView>
             <ButtonsWrapper>
-                <ButtonWrapper><StyledButton label="Anuluj" color="#A93226" fontSize='16' border onPress={handleCancel} /></ButtonWrapper>
-                <ButtonWrapper><StyledButton label="Akceptuj" color="#229954" fontSize='16' border onPress={handleAccept} /></ButtonWrapper>
+                <ButtonWrapper>
+                    <StyledButton
+                        label="Anuluj"
+                        color="#A93226"
+                        fontSize='16'
+                        border
+                        onPress={handleCancel}
+                    />
+                </ButtonWrapper>
+                <ButtonWrapper>
+                    <StyledButton
+                        label="Akceptuj"
+                        color="#229954"
+                        fontSize='16'
+                        border
+                        onPress={handleAccept}
+                    />
+                </ButtonWrapper>
             </ButtonsWrapper>
         </OrderBarWraper>
     )

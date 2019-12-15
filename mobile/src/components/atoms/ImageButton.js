@@ -7,7 +7,7 @@ const StyledWrapper = styled.TouchableOpacity`
   background-color: ${props => props.color || '#ffd829'};
   border-width: ${({border}) => (border ? '1' : '0')}
   border-radius: 12;
-  padding: 5px;
+  padding: 2px;
   justify-content: center;
   align-items: center;
 `;
