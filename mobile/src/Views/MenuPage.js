@@ -26,25 +26,29 @@ const StyledOrderBar = styled.View`
     border-bottom-right-radius: 10;
 `;
 
-const MenuPage = () => {
-    return(
-        <MenuTemplate>
-            <MenuBar/>
-            <ProductsContainer>
-                <FlatList
-                    data={DATA}
-                    renderItem={({item}) => <ProductButton
-                        name={item.name}
-                        price={item.price}
-                        image={item.image}
-                    />}
-                    numColumns='2'
-                    keyExtractor={item => item.id}
-                />
-            </ProductsContainer>
-            <OrderBar />
-        </MenuTemplate>
-    )
+class MenuPage extends Component {
+
+    render(){
+        return(
+            <MenuTemplate>
+                <MenuBar/>
+                <ProductsContainer>
+                    <FlatList
+                        data={DATA}
+                        renderItem={({item}) => <ProductButton
+                            name={item.name}
+                            price={item.price}
+                            image={item.image}
+                        />}
+                        numColumns='2'
+                        keyExtractor={item => item.id}
+                    />
+                </ProductsContainer>
+                <OrderBar />
+            </MenuTemplate>
+        )
+    }
 }
+
 
 export default MenuPage;
