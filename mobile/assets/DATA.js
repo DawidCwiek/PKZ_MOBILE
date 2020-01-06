@@ -1,8 +1,3 @@
-import maly_rollo from './icons/maly_rollo.png'
-import sredni_rollo from './icons/sredni_rollo.png'
-import mega_rollo from './icons/mega_rollo.png'
-import salatka_grecka from './icons/salatka_grecka.png'
-
 const DATA = [
     {
         id: '1',

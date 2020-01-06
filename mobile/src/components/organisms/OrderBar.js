@@ -67,12 +67,12 @@ const handleCancel = () => {
 }
 
 
-const OrderBar = () => {
+const OrderBar = props => {
     return (
         <OrderBarWraper>
             <PaymentBar>
                 <Label size='16'>Do zapłaty:</Label>
-                <Label size='16'>0.00 zł</Label>
+                <Label size='16'>{props.payment} zł</Label>
             </PaymentBar>
             <OrderView>
 

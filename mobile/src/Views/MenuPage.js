@@ -27,6 +27,15 @@ const StyledOrderBar = styled.View`
 `;
 
 class MenuPage extends Component {
+    constructor (props) {
+        super(props)
+        this.state = {
+            payment: 0.00,
+            orderArray: [],
+        }
+    }
+
+    
 
     render(){
         return(
@@ -36,6 +45,7 @@ class MenuPage extends Component {
                     <FlatList
                         data={DATA}
                         renderItem={({item}) => <ProductButton
+                            onPress={this.handleAddProduct}
                             name={item.name}
                             price={item.price}
                             image={item.image}
@@ -44,7 +54,7 @@ class MenuPage extends Component {
                         keyExtractor={item => item.id}
                     />
                 </ProductsContainer>
-                <OrderBar />
+                <OrderBar payment = {this.state.payment} />
             </MenuTemplate>
         )
     }
