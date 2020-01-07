@@ -6,21 +6,20 @@ const StyledProduct = styled.View`
     display: flex;
     flex: 1;
     flex-direction: row;
-    justify-content: start;
-    align-items: stretch;
-    margin: 2px 2px 0px 2px;
+    justify-content: flex-start;
+    align-items: flex-start;
+    margin: 1px 2px 1px 2px;
 `;
 
 const NameWrapper = styled.View`
     display: flex;
     flex: 3;
-    align-items: center;
 `;
 
 const PriceWrapper = styled.View`
     display: flex;
     flex: 2;
-    align-items: center;
+    align-items: flex-end;
 `;
 
 const DeleteWrapper = styled.TouchableOpacity`
@@ -30,7 +29,8 @@ const DeleteWrapper = styled.TouchableOpacity`
 `;
 
 const StyledText = styled.Text`
-    font-size: 6;
+    font-size: 12;
+    font-weight: bold;
 `;
 
 
@@ -41,7 +41,7 @@ const OrderItem = props => {
                 <StyledText>{props.name}</StyledText>
             </NameWrapper>
             <PriceWrapper>
-                <StyledText>{props.price}</StyledText>
+                <StyledText>{props.price} zł</StyledText>
             </PriceWrapper>
             <DeleteWrapper>
                 <StyledText>X</StyledText>

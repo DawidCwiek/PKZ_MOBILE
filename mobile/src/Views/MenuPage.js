@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { Component, useState } from 'react'
 import { View, FlatList } from 'react-native'
 import styled from 'styled-components/native'
 import MenuTemplate from '../templates/MenuTemplate'
@@ -35,8 +35,6 @@ class MenuPage extends Component {
         }
     }
 
-    
-
     render(){
         return(
             <MenuTemplate>
@@ -45,7 +43,7 @@ class MenuPage extends Component {
                     <FlatList
                         data={DATA}
                         renderItem={({item}) => <ProductButton
-                            onPress={this.handleAddProduct}
+                            onPress={this.increment}
                             name={item.name}
                             price={item.price}
                             image={item.image}

@@ -1,7 +1,9 @@
-import React, { Component } from 'react';
-import { View, Text, Button } from 'react-native';
-import styled from 'styled-components';
-import StyledButton from '../atoms/StyledButton';
+import React, { Component } from 'react'
+import { View, Text, Button, FlatList } from 'react-native'
+import styled from 'styled-components'
+import StyledButton from '../atoms/StyledButton'
+import OrderItem from '../atoms/OrderItem'
+import DATA from '../../../assets/DATA'
 
 const OrderBarWraper = styled.View`
     display: flex;
@@ -30,10 +32,11 @@ const OrderView = styled.View`
     background-color: lightgray;
     display: flex;
     flex: 2;
-    flex-direction: row;
+    flex-direction: column;
     border-width: 1;
     border-radius: 10;
     margin: 2px;
+    padding: 2px;
 `;
 
 const ButtonsWrapper = styled.View`
@@ -75,7 +78,14 @@ const OrderBar = props => {
                 <Label size='16'>{props.payment} zł</Label>
             </PaymentBar>
             <OrderView>
-
+                <FlatList
+                    data={DATA}
+                    renderItem={({item}) => <OrderItem 
+                        name={item.name}
+                        price={item.price}
+                    />}
+                    keyExtractor={item => item.id}
+                />
             </OrderView>
             <ButtonsWrapper>
                 <ButtonWrapper>
