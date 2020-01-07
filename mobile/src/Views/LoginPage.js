@@ -1,44 +1,97 @@
-import React from 'react';
-import { StyleSheet, Text, View, TextInput } from 'react-native';
-import styled from 'styled-components';
-import AuthTemplate from '../templates/AuthTemplate';
-import { Formik, Form, Field } from 'formik';
-import Heading from '../components/atoms/Heading';
-import StyledButton from '../components/atoms/StyledButton';
+import React from "react";
+import { Button, View, Alert } from "react-native";
+import { Formik } from "formik";
+import {
+  handleTextInput,
+  withNextInputAutoFocusForm,
+  withNextInputAutoFocusInput
+} from "react-native-formik";
+import { compose } from "recompose";
+import styled from "styled-components";
+import { TextField } from "react-native-material-textfield";
+import axios from "axios";
+import qs from "qs";
 
+const MyInput = compose(
+  handleTextInput,
+  withNextInputAutoFocusInput
+)(TextField);
 
+const Form = withNextInputAutoFocusForm(View);
 
-
-const StyledForm = styled(Form)`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
+const Main = styled.View`
+  background-color: #ffd829;
+  width: 100%;
+  height: 100%;
 `;
 
-const StyledInput = styled.TextInput`
-  
-  margin: 0 0 20px 0;
-  height: 50px;
-  width: 300px;
+const FormWrapper = styled.View`
+  background-color: white;
+  width: 90%;
+  margin: auto;
+  border-radius: 10px;
+  box-shadow: 1px 1px 15px rgba(0, 0, 0, 0.3);
 `;
 
-const StyledHeading = styled(Heading)`
-  margin: 0 0 30px 0;
+const StyledFrom = styled(Form)`
+  margin: 20px;
 `;
 
-const LoginPage = () => {
-    return(
-        <AuthTemplate>
-            <StyledHeading>Sign in</StyledHeading>
-            <View>
-                <StyledInput placeholder = "Email" />
-                <StyledInput placeholder = "Password" />
-                <StyledButton title = "Submit"/>
-            </View>
-        </AuthTemplate>
-    );
-}
+const StyledText = styled.Text`
+  font-size: 30px;
+  font-weight: 600;
+  margin: 10px auto;
+`;
 
-export default LoginPage;
+const authenticate = (email, password, navigation) => {
+  const data = { email, password };
 
+  const options = {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/x-www-form-urlencoded"
+    },
+    url: `http://api.devdawidcwiek.ovh/auth/login`,
+    data: qs.stringify(data)
+  };
+
+  return axios(options)
+    .then(payload => {
+      if (payload.data.home.store) {
+        navigation.navigate("Menu", {
+          token: payload.data.auth_token
+        });
+      } else {
+        Alert.alert("Error", "You do not have permission to continue!");
+      }
+    })
+    .catch(() => {
+      Alert.alert("Error", "Incorrect e-mail or password!");
+    });
+};
+
+const LoginScreen = ({ navigation }) => {
+  return (
+    <Main>
+      <FormWrapper>
+        <StyledText>Sing in</StyledText>
+        <Formik
+          initialValues={{ email: "", password: "" }}
+          onSubmit={({ email, password }) =>
+            authenticate(email, password, navigation)
+          }
+        >
+          {props => (
+            <StyledFrom>
+              <MyInput label="Email" name="email" type="email" />
+              <MyInput label="Password" name="password" type="password" />
+              <Button onPress={props.handleSubmit} title="SUBMIT" />
+            </StyledFrom>
+          )}
+        </Formik>
+      </FormWrapper>
+    </Main>
+  );
+};
+
+export default LoginScreen;

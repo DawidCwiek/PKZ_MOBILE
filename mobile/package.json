@@ -8,17 +8,26 @@
     "eject": "expo eject"
   },
   "dependencies": {
+    "@react-native-community/eslint-config": "0.0.6",
+    "@react-native-community/masked-view": "^0.1.5",
+    "axios": "^0.19.1",
     "expo": "^35.0.0",
     "formik": "^2.0.6",
     "react": "16.8.3",
     "react-dom": "16.8.3",
     "react-native": "https://github.com/expo/react-native/archive/sdk-35.0.0.tar.gz",
+    "react-native-formik": "^1.7.7",
+    "react-native-gesture-handler": "^1.5.3",
+    "react-native-material-textfield": "^0.16.1",
+    "react-native-safe-area-context": "^0.6.2",
     "react-native-web": "^0.11.7",
+    "react-navigation": "^4.0.10",
+    "react-navigation-stack": "^2.0.12",
     "styled-components": "^4.4.1"
   },
   "devDependencies": {
     "babel-preset-expo": "^7.1.0",
-    "eslint": "^6.7.0",
+    "eslint": "^6.8.0",
     "eslint-plugin-react": "^7.16.0"
   },
   "private": true
