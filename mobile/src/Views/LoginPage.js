@@ -11,6 +11,7 @@ import styled from "styled-components";
 import { TextField } from "react-native-material-textfield";
 import axios from "axios";
 import qs from "qs";
+import { REMOTE_HOST } from "../configApi";
 
 const MyInput = compose(
   handleTextInput,
@@ -51,7 +52,7 @@ const authenticate = (email, password, navigation) => {
     headers: {
       "Content-Type": "application/x-www-form-urlencoded"
     },
-    url: `http://api.devdawidcwiek.ovh/auth/login`,
+    url: `${REMOTE_HOST}/auth/login`,
     data: qs.stringify(data)
   };
 
@@ -59,7 +60,8 @@ const authenticate = (email, password, navigation) => {
     .then(payload => {
       if (payload.data.home.store) {
         navigation.navigate("Menu", {
-          token: payload.data.auth_token
+          token: payload.data.auth_token,
+          store: payload.data.home.store
         });
       } else {
         Alert.alert("Error", "You do not have permission to continue!");
