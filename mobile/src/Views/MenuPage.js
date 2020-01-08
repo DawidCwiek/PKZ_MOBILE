@@ -40,7 +40,7 @@ class MenuPage extends Component {
     };
   }
 
-  menu = () => {
+  fetchMenu = () => {
     const options = {
       method: "GET",
       headers: {
@@ -61,8 +61,39 @@ class MenuPage extends Component {
       });
   };
 
+  sendOrder = price => {
+    let formData = new FormData();
+    formData.append("order[total_price]", price);
+    formData.append("order[profit]", price);
+    for (let i = 0; i < this.state.orders.length; i += 1) {
+      formData.append("products[]", this.state.orders[i].id);
+    }
+
+    const options = {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/x-www-form-urlencoded",
+        Authorization: this.state.token
+      },
+      data: formData,
+      url: `${REMOTE_HOST}/store/${this.state.storeId}/orders`
+    };
+    return axios(options)
+      .then(() => {
+        Alert.alert("Success", "The order placed!");
+        this.setState({ orders: [] });
+      })
+      .catch(() => {
+        Alert.alert("Error", "Something went wrong!");
+      });
+  };
+
+  cancelOrder = () => {
+    this.setState({ orders: [] });
+  };
+
   componentDidMount() {
-    this.menu();
+    this.fetchMenu();
   }
 
   compare = (a, b) => {
@@ -116,6 +147,8 @@ class MenuPage extends Component {
           payment={this.state.payment}
           orders={this.state.orders}
           removeToOrders={this.removeToOrders}
+          sendOrder={this.sendOrder}
+          cancelOrder={this.cancelOrder}
         />
       </MenuTemplate>
     );

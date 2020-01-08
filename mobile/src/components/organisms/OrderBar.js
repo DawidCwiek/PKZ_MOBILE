@@ -1,9 +1,8 @@
 import React, { Component } from "react";
-import { View, Text, Button, FlatList } from "react-native";
+import { FlatList, Alert } from "react-native";
 import styled from "styled-components";
 import StyledButton from "../atoms/StyledButton";
 import OrderItem from "../atoms/OrderItem";
-import DATA from "../../../assets/DATA";
 
 const OrderBarWraper = styled.View`
   display: flex;
@@ -70,11 +69,30 @@ class OrderBar extends Component {
   }
 
   handleAccept = () => {
-    alert("Akceptowano zamówienie");
+    if (this.state.orders.length < 1) {
+      return Alert.alert("Error", "The order is empty!");
+    }
+    Alert.alert(
+      "Confirm Order!",
+      "Are you sure you want to create this order?",
+      [
+        { text: "Yes", onPress: () => this.props.sendOrder(this.sumToPayment) },
+        { text: "No" }
+      ],
+      { cancelable: true }
+    );
   };
 
   handleCancel = () => {
-    alert("Anulowano zamówienie");
+    Alert.alert(
+      "Cancel Order!",
+      "Are you sure you want to cancel this order?",
+      [
+        { text: "Yes", onPress: () => this.props.cancelOrder() },
+        { text: "No" }
+      ],
+      { cancelable: true }
+    );
   };
 
   sumToPayment = () => {
@@ -97,18 +115,20 @@ class OrderBar extends Component {
           <Label size="16">{this.sumToPayment()} zł</Label>
         </PaymentBar>
         <OrderView>
-          <FlatList
-            data={this.state.orders}
-            renderItem={({ item }) => (
-              <OrderItem
-                name={item.name}
-                price={item.price}
-                item={item}
-                removeToOrders={this.props.removeToOrders}
-              />
-            )}
-            keyExtractor={item => item.id + Math.random()}
-          />
+          {this.state.orders.length ? (
+            <FlatList
+              data={this.state.orders}
+              renderItem={({ item }) => (
+                <OrderItem
+                  name={item.name}
+                  price={item.price}
+                  item={item}
+                  removeToOrders={this.props.removeToOrders}
+                />
+              )}
+              keyExtractor={item => item.id + Math.random()}
+            />
+          ) : null}
         </OrderView>
         <ButtonsWrapper>
           <ButtonWrapper>
