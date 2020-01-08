@@ -36,7 +36,7 @@ class MenuPage extends Component {
       storeId: props.navigation.state["params"]["store"]["id"],
       products: [],
       payment: 0.0,
-      orderArray: []
+      orders: []
     };
   }
 
@@ -65,27 +65,58 @@ class MenuPage extends Component {
     this.menu();
   }
 
+  compare = (a, b) => {
+    const bandA = a.name;
+    const bandB = b.name;
+
+    let comparison = 0;
+    if (bandA > bandB) {
+      comparison = 1;
+    } else if (bandA < bandB) {
+      comparison = -1;
+    }
+    return comparison;
+  };
+
+  addToOrders = item => {
+    this.setState({
+      orders: [item, ...this.state.orders].sort(this.compare)
+    });
+  };
+
+  removeToOrders = item => {
+    let list = this.state.orders;
+    list.splice(list.indexOf(item), 1);
+    this.setState({
+      orders: list
+    });
+  };
+
   render() {
-    console.log(this.state);
     return (
       <MenuTemplate>
         <MenuBar />
         <ProductsContainer>
           <FlatList
-            data={DATA}
+            data={this.state.products}
             renderItem={({ item }) => (
               <ProductButton
-                onPress={this.increment}
+                addToOrders={this.addToOrders}
+                item={item}
                 name={item.name}
                 price={item.price}
-                image={item.image}
+                image={item.image_url}
               />
             )}
             numColumns="2"
-            keyExtractor={item => item.id}
+            keyExtractor={item => item.id + Math.random()}
           />
         </ProductsContainer>
-        <OrderBar payment={this.state.payment} />
+        <OrderBar
+          payment={this.state.payment}
+          orders={this.state.orders}
+          removeToOrders={this.removeToOrders}
+        />
       </MenuTemplate>
     );
   }

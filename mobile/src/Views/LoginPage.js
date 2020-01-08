@@ -76,7 +76,7 @@ const LoginScreen = ({ navigation }) => {
   return (
     <Main>
       <FormWrapper>
-        <StyledText>Sing in</StyledText>
+        <StyledText>Sign in</StyledText>
         <Formik
           initialValues={{ email: "", password: "" }}
           onSubmit={({ email, password }) =>

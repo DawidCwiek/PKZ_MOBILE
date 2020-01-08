@@ -1,7 +1,8 @@
-import React, { Component } from 'react'
-import { Text, TouchableOpacity, StyleSheet } from 'react-native'
-import styled from 'styled-components/native'
-import StyledImage from './StyledImage'
+import React, { Component } from "react";
+import { Text, TouchableOpacity, StyleSheet } from "react-native";
+import styled from "styled-components/native";
+import StyledImage from "./StyledImage";
+import { REMOTE_HOST } from "../../configApi";
 
 const StyledOpacity = styled.TouchableOpacity`
     width: 150;
@@ -18,49 +19,51 @@ const StyledOpacity = styled.TouchableOpacity`
 `;
 
 const PriceWrapper = styled.View`
-    display: flex;
-    flex: 1;
-    flex-direction: column;
-    justify-content: center;
-    align-items: flex-end;
-    padding-top: 2px;
-    padding-right: 10px;
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-end;
+  padding-top: 2px;
+  padding-right: 10px;
 `;
 
 const ImageWrapper = styled.View`
-    display: flex;
-    flex: 4;
-    justify-content: center;
-    align-items: center;
+  display: flex;
+  flex: 4;
+  justify-content: center;
+  align-items: center;
 `;
 
 const NameWrapper = styled.View`
-    display: flex;
-    flex: 1;
-    justify-content: center;
-    align-items: center;
+  display: flex;
+  flex: 1;
+  justify-content: center;
+  align-items: center;
 `;
 
 const StyledText = styled.Text`
-    font-weight: bold;
+  font-weight: bold;
 `;
 
 const ProductButton = props => {
-    return(
-        <StyledOpacity>
-            <PriceWrapper>
-                <StyledText>{props.price} zł</StyledText>
-            </PriceWrapper> 
-            <ImageWrapper>
-                <StyledImage width='68%' height='100%' source={{uri: props.image}} />
-            </ImageWrapper>
-            <NameWrapper>
-                <StyledText>{props.name}</StyledText>
-            </NameWrapper>
-        </StyledOpacity>
-    )  
-}
-
-
+  return (
+    <StyledOpacity onPress={() => props.addToOrders(props.item)}>
+      <PriceWrapper>
+        <StyledText>{props.price} zł</StyledText>
+      </PriceWrapper>
+      <ImageWrapper>
+        <StyledImage
+          width="68%"
+          height="100%"
+          source={{ uri: `${REMOTE_HOST}${props.image}` }}
+        />
+      </ImageWrapper>
+      <NameWrapper>
+        <StyledText>{props.name}</StyledText>
+      </NameWrapper>
+    </StyledOpacity>
+  );
+};
 
 export default ProductButton;
