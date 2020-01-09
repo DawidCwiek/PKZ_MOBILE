@@ -3,6 +3,7 @@ import { createAppContainer } from "react-navigation";
 import { createStackNavigator } from "react-navigation-stack";
 import LoginPage from "./src/Views/LoginPage";
 import MenuPage from "./src/Views/MenuPage";
+import KitchenPage from "./src/Views/KitchenPage";
 
 const MainNavigator = createStackNavigator({
   Login: {
