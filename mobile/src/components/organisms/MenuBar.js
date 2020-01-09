@@ -44,11 +44,12 @@ const ButtonWraper = styled.View`
   align-items: flex-end;
 `;
 
-const handleLogOut = ({ navigation }) => {
-  navigation.navigate("Login");
+const handleLogOut = (navigation, token) => {
+  navigation.navigate("Kitchen", { token: token });
+  //   navigation.navigate("Login");
 };
 
-const MenuBar = navigation => {
+const MenuBar = ({ navigation, token }) => {
   return (
     <MenuBarWraper>
       <LogoWraper>
@@ -58,7 +59,10 @@ const MenuBar = navigation => {
         <Heading>Menu</Heading>
       </MenuWraper>
       <ButtonWraper>
-        <ImageButton source={logOut} onPress={() => handleLogOut(navigation)} />
+        <ImageButton
+          source={logOut}
+          onPress={() => handleLogOut(navigation, token)}
+        />
       </ButtonWraper>
     </MenuBarWraper>
   );
