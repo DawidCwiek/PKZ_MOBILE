@@ -1,12 +1,21 @@
 import React, { Component } from "react";
 import { View, Text } from "react-native";
 import styled from "styled-components";
+import MenuTemplate from "../templates/MenuTemplate";
 import { REMOTE_HOST_WS } from "../configApi";
+import MenuBar from "../components/organisms/MenuBar";
 
 const StyledText = styled.Text`
   font-size: 30px;
   font-weight: 600;
   margin: auto;
+`;
+
+const OrderWrapper = styled.View`
+    display: flex;
+    flex: 1;
+    align-content: center;
+    justify-content: center;
 `;
 
 class KitchenPage extends Component {
@@ -42,9 +51,12 @@ class KitchenPage extends Component {
   render() {
     console.log(this.state);
     return (
-      <View style={{ justifyContent: "center", alignItems: "center", flex: 1 }}>
-        <Text>TOKEN: {this.state.token}</Text>
-      </View>
+      <MenuTemplate>
+          <MenuBar navigation={this.props.navigation} token={this.state.token}/>
+          <OrderWrapper>
+              <Text>{this.props.navigation.state.routeName}</Text>
+          </OrderWrapper>
+      </MenuTemplate>
     );
   }
 }
