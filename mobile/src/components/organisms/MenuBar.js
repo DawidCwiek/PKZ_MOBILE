@@ -56,15 +56,26 @@ const handleTabs = (navigation, token) => {
     navigation.navigate("Menu");
 };
 
-const MenuBar = ({ navigation, token }) => {
+const MenuBar = ({ navigation, token, kitchen }) => {
   return (
     <MenuBarWraper>
       <LogoWraper>
         <StyledImage source={kebab} />
       </LogoWraper>
       <ToKitchenWrapper onPress={() => handleTabs(navigation, token)}>
-        <Heading color="black">Menu/</Heading>
-        <Heading color="#ffe880">Kitchen</Heading>
+        {kitchen ? (
+          <>
+            <Heading color="#ffe880">Menu</Heading>
+            <Heading>/</Heading>
+            <Heading>Kitchen</Heading>
+          </>
+        ) : (
+          <>
+            <Heading>Menu</Heading>
+            <Heading>/</Heading>
+            <Heading color="#ffe880">Kitchen</Heading>
+          </>
+        )}
       </ToKitchenWrapper>
       <ButtonWraper>
         <ImageButton source={logOut} onPress={() => handleLogOut(navigation)} />

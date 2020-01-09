@@ -52,7 +52,7 @@ class KitchenPage extends Component {
     console.log(this.state);
     return (
       <MenuTemplate>
-          <MenuBar navigation={this.props.navigation} token={this.state.token}/>
+          <MenuBar navigation={this.props.navigation} token={this.state.token} kitchen={true} />
           <OrderWrapper>
               <Text>{this.props.navigation.state.routeName}</Text>
           </OrderWrapper>

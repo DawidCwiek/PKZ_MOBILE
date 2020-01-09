@@ -126,7 +126,7 @@ class MenuPage extends Component {
   render() {
     return (
       <MenuTemplate>
-        <MenuBar navigation={this.props.navigation} token={this.state.token} />
+        <MenuBar navigation={this.props.navigation} token={this.state.token} kitchen={false} />
         <ProductsContainer>
           <FlatList
             data={this.state.products}
