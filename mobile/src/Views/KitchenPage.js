@@ -13,28 +13,34 @@ class KitchenPage extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      token: props.navigation.state["params"]["token"]
+      token: props.navigation.state["params"]["token"],
+      orders: []
     };
     this.ws = new WebSocket(
       `${REMOTE_HOST_WS}/?token=${props.navigation.state["params"]["token"]}`
     );
     this.ws.onopen = () => {
-      // connection opened
       this.ws.send(
         JSON.stringify({
           command: "subscribe",
           identifier: '{"channel":"OrderChannel","store_id":"53"}'
         })
-      ); // send a message {"command":"subscribe","identifier":"{\"channel\":\"OrderChannel\",\"store_id\":\"53\"}"}
+      );
     };
 
     this.ws.onmessage = e => {
-      // a message was received
-      console.log(e.data);
+      const data = JSON.parse(e.data);
+      if (typeof data["message"] != "undefinder") {
+        if (typeof data["message"] == "object") {
+          const orders = data["message"];
+          this.setState({ orders: orders.data });
+        }
+      }
     };
   }
 
   render() {
+    console.log(this.state);
     return (
       <View>
         <StyledText>Dupa {this.state.token}</StyledText>
