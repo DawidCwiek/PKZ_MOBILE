@@ -42,8 +42,8 @@ class KitchenPage extends Component {
   render() {
     console.log(this.state);
     return (
-      <View>
-        <StyledText>Dupa {this.state.token}</StyledText>
+      <View style={{ justifyContent: "center", alignItems: "center", flex: 1 }}>
+        <Text>TEST</Text>
       </View>
     );
   }
