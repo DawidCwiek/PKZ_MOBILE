@@ -16,6 +16,7 @@
     "react": "16.8.3",
     "react-dom": "16.8.3",
     "react-native": "https://github.com/expo/react-native/archive/sdk-35.0.0.tar.gz",
+    "react-native-double-tap": "^1.0.1",
     "react-native-formik": "^1.7.7",
     "react-native-gesture-handler": "^1.5.3",
     "react-native-material-textfield": "^0.16.1",

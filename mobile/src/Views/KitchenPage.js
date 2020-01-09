@@ -4,6 +4,7 @@ import styled from "styled-components";
 import MenuTemplate from "../templates/MenuTemplate";
 import { REMOTE_HOST_WS } from "../configApi";
 import MenuBar from "../components/organisms/MenuBar";
+import Order from "../components/atoms/Order";
 
 const StyledText = styled.Text`
   font-size: 30px;
@@ -54,7 +55,7 @@ class KitchenPage extends Component {
       <MenuTemplate>
           <MenuBar navigation={this.props.navigation} token={this.state.token} kitchen={true} />
           <OrderWrapper>
-              <Text>{this.props.navigation.state.routeName}</Text>
+              <Order></Order>
           </OrderWrapper>
       </MenuTemplate>
     );
