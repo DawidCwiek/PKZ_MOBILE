@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { View } from "react-native";
+import { View, Text } from "react-native";
 import styled from "styled-components";
 import { REMOTE_HOST_WS } from "../configApi";
 
@@ -43,7 +43,7 @@ class KitchenPage extends Component {
     console.log(this.state);
     return (
       <View style={{ justifyContent: "center", alignItems: "center", flex: 1 }}>
-        <Text>TEST</Text>
+        <Text>TOKEN: {this.state.token}</Text>
       </View>
     );
   }

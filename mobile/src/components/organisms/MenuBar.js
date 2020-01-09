@@ -49,7 +49,7 @@ const handleLogOut = navigation => {
   navigation.navigate("Login");
 };
 
-const handleToKitchen = ({ navigation }) => {
+const handleToKitchen = (navigation, token) => {
   navigation.navigate("Kitchen", { token: token });
 };
 
