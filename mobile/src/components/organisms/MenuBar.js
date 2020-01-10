@@ -49,20 +49,26 @@ const handleLogOut = navigation => {
   navigation.navigate("Login");
 };
 
-const handleTabs = (navigation, token) => {
-  if(navigation.state.routeName == "Menu")
-    navigation.navigate("Kitchen", { token: token });
+const handleTabs = (navigation, token, storeId) => {
+  if (navigation.state.routeName == "Menu")
+    navigation.navigate("Kitchen", {
+      token: token,
+      store: storeId
+    });
   else
-    navigation.navigate("Menu");
+    navigation.navigate("Menu", {
+      token: token,
+      store: storeId
+    });
 };
 
-const MenuBar = ({ navigation, token, kitchen }) => {
+const MenuBar = ({ navigation, token, kitchen, storeId }) => {
   return (
     <MenuBarWraper>
       <LogoWraper>
         <StyledImage source={kebab} />
       </LogoWraper>
-      <ToKitchenWrapper onPress={() => handleTabs(navigation, token)}>
+      <ToKitchenWrapper onPress={() => handleTabs(navigation, token, storeId)}>
         {kitchen ? (
           <>
             <Heading color="#ffe880">Menu</Heading>

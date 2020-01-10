@@ -13,10 +13,10 @@ const StyledText = styled.Text`
 `;
 
 const OrderWrapper = styled.View`
-    display: flex;
-    flex: 1;
-    align-content: center;
-    justify-content: center;
+  display: flex;
+  flex: 1;
+  align-content: center;
+  justify-content: center;
 `;
 
 class KitchenPage extends Component {
@@ -24,6 +24,7 @@ class KitchenPage extends Component {
     super(props);
     this.state = {
       token: props.navigation.state["params"]["token"],
+      storeId: props.navigation.state["params"]["store"],
       orders: []
     };
     this.ws = new WebSocket(
@@ -33,7 +34,7 @@ class KitchenPage extends Component {
       this.ws.send(
         JSON.stringify({
           command: "subscribe",
-          identifier: '{"channel":"OrderChannel","store_id":"53"}'
+          identifier: `{"channel":"OrderChannel","store_id":"${props.navigation.state["params"]["store"]}"}`
         })
       );
     };
@@ -53,10 +54,14 @@ class KitchenPage extends Component {
     console.log(this.state.orders);
     return (
       <MenuTemplate>
-          <MenuBar navigation={this.props.navigation} token={this.state.token} kitchen={true} />
-          <OrderWrapper>
-              <Order order_id="5"></Order>
-          </OrderWrapper>
+        <MenuBar
+          navigation={this.props.navigation}
+          token={this.state.token}
+          kitchen={true}
+        />
+        <OrderWrapper>
+          <Order order_id="5"></Order>
+        </OrderWrapper>
       </MenuTemplate>
     );
   }
