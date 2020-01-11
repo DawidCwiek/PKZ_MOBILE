@@ -76,7 +76,10 @@ class OrderBar extends Component {
       "Confirm Order!",
       "Are you sure you want to create this order?",
       [
-        { text: "Yes", onPress: () => this.props.sendOrder(this.sumToPayment) },
+        {
+          text: "Yes",
+          onPress: () => this.props.sendOrder(this.sumToPayment())
+        },
         { text: "No" }
       ],
       { cancelable: true }
