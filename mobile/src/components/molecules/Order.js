@@ -50,7 +50,7 @@ class Order extends Component {
                 </DoubleClick>
                 <FlatList 
                     data={this.props.order}
-                    renderItem={({item}) => <OrderWithComponents name={item.product} />}
+                    renderItem={({item}) => <OrderWithComponents name={item.name} />}
                 />
             </StyledOrder>
         );
