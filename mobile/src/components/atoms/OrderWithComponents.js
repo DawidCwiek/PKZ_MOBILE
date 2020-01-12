@@ -12,7 +12,7 @@ const ComponentsWrapper = styled.View`
 
 const StyledText = styled.Text`
     font-weight: bold;
-    font-size: 24px;
+    font-size: 12px;
 `;
 
 const OrderWithComponents = props => {

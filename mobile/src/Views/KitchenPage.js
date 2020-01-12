@@ -52,6 +52,7 @@ class KitchenPage extends Component {
     };
   }
 
+
   render() {
     console.log(this.state);
     return (
@@ -64,8 +65,13 @@ class KitchenPage extends Component {
         <OrderWrapper>
           <FlatList 
             data={this.state.orders}
-            renderItem={({item}) => <Order order_id={item.id} order={item.products} />}
-            horizontal
+            renderItem={({item}) =>
+              <Order
+                order_id={item.id} 
+                order={item.products}
+              />}
+            numColumns="2"
+            keyExtractor={item => item.id}
           />
         </OrderWrapper>
       </MenuTemplate>
