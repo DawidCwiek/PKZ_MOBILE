@@ -33,7 +33,7 @@ class MenuPage extends Component {
     super(props);
     this.state = {
       token: props.navigation.state["params"]["token"],
-      storeId: props.navigation.state["params"]["store"]["id"],
+      storeId: props.navigation.state["params"]["store"],
       products: [],
       payment: 0.0,
       orders: []
@@ -126,7 +126,12 @@ class MenuPage extends Component {
   render() {
     return (
       <MenuTemplate>
-        <MenuBar navigation={this.props.navigation} token={this.state.token} kitchen={false} />
+        <MenuBar
+          navigation={this.props.navigation}
+          token={this.state.token}
+          kitchen={false}
+          storeId={this.state.storeId}
+        />
         <ProductsContainer>
           <FlatList
             data={this.state.products}

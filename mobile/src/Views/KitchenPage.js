@@ -14,11 +14,11 @@ const StyledText = styled.Text`
 `;
 
 const OrderWrapper = styled.View`
-    display: flex;
-    flex: 1;
-    align-content: center;
-    justify-content: center;
-    margin: 20px 0px 20px 0px;
+  display: flex;
+  flex: 1;
+  align-content: center;
+  justify-content: center;
+  margin: 20px 0px 20px 0px;
 `;
 
 const DATA = [
@@ -110,6 +110,7 @@ class KitchenPage extends Component {
     super(props);
     this.state = {
       token: props.navigation.state["params"]["token"],
+      storeId: props.navigation.state["params"]["store"],
       orders: []
     };
     this.ws = new WebSocket(
@@ -119,7 +120,7 @@ class KitchenPage extends Component {
       this.ws.send(
         JSON.stringify({
           command: "subscribe",
-          identifier: '{"channel":"OrderChannel","store_id":"53"}'
+          identifier: `{"channel":"OrderChannel","store_id":"${props.navigation.state["params"]["store"]}"}`
         })
       );
     };
@@ -139,14 +140,18 @@ class KitchenPage extends Component {
     console.log(this.state.orders);
     return (
       <MenuTemplate>
-          <MenuBar navigation={this.props.navigation} token={this.state.token} kitchen={true} />
-          <OrderWrapper>
-            <FlatList 
-              data={DATA}
-              renderItem={({item}) => <Order order_id={item.order_id} order={item.order} />}
-              horizontal
-            />
-          </OrderWrapper>
+        <MenuBar
+          navigation={this.props.navigation}
+          token={this.state.token}
+          kitchen 
+        />
+        <OrderWrapper>
+          <FlatList 
+            data={DATA}
+            renderItem={({item}) => <Order order_id={item.order_id} order={item.order} />}
+            horizontal
+          />
+        </OrderWrapper>
       </MenuTemplate>
     );
   }
