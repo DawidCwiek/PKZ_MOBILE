@@ -7,8 +7,6 @@ import MenuBar from "../components/organisms/MenuBar";
 import OrderBar from "../components/organisms/OrderBar";
 import ProductButton from "../components/atoms/ProductButton";
 import axios from "axios";
-import DATA from "../../assets/DATA";
-import maly_rollo from "../../assets/icons/maly_rollo.png";
 import { REMOTE_HOST } from "../configApi";
 
 const ProductsContainer = styled.View`

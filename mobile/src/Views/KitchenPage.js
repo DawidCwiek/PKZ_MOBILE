@@ -7,12 +7,6 @@ import MenuBar from "../components/organisms/MenuBar";
 import Order from "../components/molecules/Order";
 import { FlatList } from "react-native-gesture-handler";
 
-const StyledText = styled.Text`
-  font-size: 30px;
-  font-weight: 600;
-  margin: auto;
-`;
-
 const OrderWrapper = styled.View`
   display: flex;
   flex: 1;
@@ -52,24 +46,26 @@ class KitchenPage extends Component {
     };
   }
 
-
   render() {
-    console.log(this.state);
     return (
       <MenuTemplate>
         <MenuBar
           navigation={this.props.navigation}
           token={this.state.token}
-          kitchen 
+          kitchen
         />
         <OrderWrapper>
-          <FlatList 
+          <FlatList
             data={this.state.orders}
-            renderItem={({item}) =>
+            renderItem={({ item }) => (
               <Order
-                order_id={item.id} 
+                orderId={item.id}
                 order={item.products}
-              />}
+                storeId={this.state.storeId}
+                token={this.state.token}
+                time={item.created_at}
+              />
+            )}
             numColumns="2"
             keyExtractor={item => item.id}
           />
