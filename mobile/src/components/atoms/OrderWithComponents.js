@@ -3,7 +3,7 @@ import { View, Text } from "react-native";
 import styled from "styled-components";
 
 const StyledOrder = styled.View`
-    margin: 2px 2px 2px 2px;
+    margin: 2px 2px 2px 7px;
 `;
 
 const ComponentsWrapper = styled.View`
@@ -12,7 +12,7 @@ const ComponentsWrapper = styled.View`
 
 const StyledText = styled.Text`
     font-weight: bold;
-    font-size: 12px;
+    font-size: 24px;
 `;
 
 const OrderWithComponents = props => {

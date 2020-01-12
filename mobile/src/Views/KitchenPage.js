@@ -5,6 +5,7 @@ import MenuTemplate from "../templates/MenuTemplate";
 import { REMOTE_HOST_WS } from "../configApi";
 import MenuBar from "../components/organisms/MenuBar";
 import Order from "../components/molecules/Order";
+import { FlatList } from "react-native-gesture-handler";
 
 const StyledText = styled.Text`
   font-size: 30px;
@@ -17,7 +18,92 @@ const OrderWrapper = styled.View`
     flex: 1;
     align-content: center;
     justify-content: center;
+    margin: 20px 0px 20px 0px;
 `;
+
+const DATA = [
+  {
+    order_id: "1",
+    order: [
+      {product: "Kanapka Emila"},
+      {product: "Kanapka Szymona"},
+      {product: "Kanapka Tomka"},
+      {product: "Kanapka Emila"},
+      {product: "Kanapka Emila"}
+    ]
+  },
+  {
+    order_id: "2",
+    order: [
+      {product: "Kanapka Emila"},
+      {product: "Kanapka Szymona"},
+      {product: "Kanapka Tomka"},
+      {product: "Kanapka Emila"}
+    ]
+  },
+  {
+    order_id: "3",
+    order: [
+      {product: "Kanapka Emila"}
+    ]
+  },
+  {
+    order_id: "4",
+    order: [
+      {product: "Kanapka Emila"},
+      {product: "Kanapka Szymona"},
+      {product: "Kanapka Tomka"},
+      {product: "Kanapka Emila"},
+      {product: "Kanapka Emila"}
+    ]
+  },
+  {
+    order_id: "5",
+    order: [
+      {product: "Kanapka Emila"},
+      {product: "Kanapka Szymona"},
+      {product: "Kanapka Tomka"}
+    ]
+  },
+  {
+    order_id: "6",
+    order: [
+      {product: "Kanapka Emila"},
+      {product: "Kanapka Szymona"},
+      {product: "Kanapka Tomka"},
+      {product: "Kanapka Emila"},
+      {product: "Kanapka Emila"},
+      {product: "Kanapka Emila"},
+      {product: "Kanapka Szymona"},
+      {product: "Kanapka Tomka"},
+      {product: "Kanapka Emila"},
+      {product: "Kanapka Emila"},
+      {product: "Kanapka Szymona"},
+      {product: "Kanapka Tomka"},
+      {product: "Kanapka Emila"},
+      {product: "Kanapka Emila"},
+      {product: "Kanapka Szymona"},
+      {product: "Kanapka Tomka"},
+      {product: "Kanapka Emila"},
+      {product: "Kanapka Emila"},
+      {product: "Kanapka Szymona"},
+      {product: "Kanapka Tomka"},
+      {product: "Kanapka Emila"},
+      {product: "Kanapka Emila"},
+      {product: "Kanapka Szymona"},
+      {product: "Kanapka Tomka"},
+      {product: "Kanapka Emila"},
+      {product: "Kanapka Emila"},
+      {product: "Kanapka Szymona"},
+      {product: "Kanapka Tomka"},
+      {product: "Kanapka Emila"},
+      {product: "Kanapka Emila"},
+      {product: "Kanapka Szymona"},
+      {product: "Kanapka Tomka"},
+      {product: "Kanapka Emila"}
+    ]
+  },
+]
 
 class KitchenPage extends Component {
   constructor(props) {
@@ -55,7 +141,11 @@ class KitchenPage extends Component {
       <MenuTemplate>
           <MenuBar navigation={this.props.navigation} token={this.state.token} kitchen={true} />
           <OrderWrapper>
-              <Order order_id="5"></Order>
+            <FlatList 
+              data={DATA}
+              renderItem={({item}) => <Order order_id={item.order_id} order={item.order} />}
+              horizontal
+            />
           </OrderWrapper>
       </MenuTemplate>
     );
