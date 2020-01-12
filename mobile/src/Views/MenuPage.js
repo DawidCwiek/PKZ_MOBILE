@@ -7,8 +7,6 @@ import MenuBar from "../components/organisms/MenuBar";
 import OrderBar from "../components/organisms/OrderBar";
 import ProductButton from "../components/atoms/ProductButton";
 import axios from "axios";
-import DATA from "../../assets/DATA";
-import maly_rollo from "../../assets/icons/maly_rollo.png";
 import { REMOTE_HOST } from "../configApi";
 
 const ProductsContainer = styled.View`
@@ -33,7 +31,7 @@ class MenuPage extends Component {
     super(props);
     this.state = {
       token: props.navigation.state["params"]["token"],
-      storeId: props.navigation.state["params"]["store"]["id"],
+      storeId: props.navigation.state["params"]["store"],
       products: [],
       payment: 0.0,
       orders: []
@@ -126,7 +124,12 @@ class MenuPage extends Component {
   render() {
     return (
       <MenuTemplate>
-        <MenuBar navigation={this.props.navigation} />
+        <MenuBar
+          navigation={this.props.navigation}
+          token={this.state.token}
+          kitchen={false}
+          storeId={this.state.storeId}
+        />
         <ProductsContainer>
           <FlatList
             data={this.state.products}

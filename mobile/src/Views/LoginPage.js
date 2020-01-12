@@ -61,7 +61,7 @@ const authenticate = (email, password, navigation) => {
       if (payload.data.home.store) {
         navigation.navigate("Menu", {
           token: payload.data.auth_token,
-          store: payload.data.home.store
+          store: payload.data.home.store["id"]
         });
       } else {
         Alert.alert("Error", "You do not have permission to continue!");

@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { View, Button } from "react-native";
+import { View, Button, TouchableOpacity } from "react-native";
 import styled from "styled-components";
 import Heading from "../atoms/Heading";
 import StyledImage from "../atoms/StyledImage";
@@ -30,8 +30,9 @@ const LogoWraper = styled.View`
   flex: 1;
 `;
 
-const MenuWraper = styled.View`
+const ToKitchenWrapper = styled.TouchableOpacity`
   display: flex;
+  flex-direction: row;
   flex: 2;
   justify-content: center;
   align-items: center;
@@ -44,19 +45,44 @@ const ButtonWraper = styled.View`
   align-items: flex-end;
 `;
 
-const handleLogOut = ({ navigation }) => {
+const handleLogOut = navigation => {
   navigation.navigate("Login");
 };
 
-const MenuBar = navigation => {
+const handleTabs = (navigation, token, storeId) => {
+  if (navigation.state.routeName == "Menu")
+    navigation.navigate("Kitchen", {
+      token: token,
+      store: storeId
+    });
+  else
+    navigation.navigate("Menu", {
+      token: token,
+      store: storeId
+    });
+};
+
+const MenuBar = ({ navigation, token, kitchen, storeId }) => {
   return (
     <MenuBarWraper>
       <LogoWraper>
         <StyledImage source={kebab} />
       </LogoWraper>
-      <MenuWraper>
-        <Heading>Menu</Heading>
-      </MenuWraper>
+      <ToKitchenWrapper onPress={() => handleTabs(navigation, token, storeId)}>
+        {kitchen ? (
+          <>
+            <Heading color="#ffe880">Menu</Heading>
+            <Heading>/</Heading>
+            <Heading>Kitchen</Heading>
+          </>
+        ) : (
+          <>
+            <Heading>Menu</Heading>
+            <Heading>/</Heading>
+            <Heading color="#ffe880">Kitchen</Heading>
+          </>
+        )}
+      </ToKitchenWrapper>
       <ButtonWraper>
         <ImageButton source={logOut} onPress={() => handleLogOut(navigation)} />
       </ButtonWraper>
