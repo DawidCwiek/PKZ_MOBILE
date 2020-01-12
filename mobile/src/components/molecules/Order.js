@@ -31,7 +31,8 @@ const OrderText = styled(StyledText)`
 const CurrentTime = styled.View`
     display: flex;
     flex-direction: row;
-    align-self: flex-end;
+    flex: 1;
+    align-items: flex-end;
     margin: 2px 2px 2px 2px;
 `;
 
@@ -45,6 +46,11 @@ const TimeWrapper = styled.View`
     display: flex;
     flex: 1;
     align-items: flex-end;
+`;
+
+const ListWrapper = styled.View`
+    display: flex;
+    flex: 1;
 `;
 
 class Order extends Component {
@@ -67,12 +73,14 @@ class Order extends Component {
                         <OrderText underline>Order {this.props.order_id}</OrderText>
                     </NumberWrapper>
                 </DoubleClick>
-                <FlatList 
-                    data={this.props.order}
-                    renderItem={({item}) => <OrderWithComponents name={item.name} />}
-                    listKey={this.props.order_id}
-                    keyExtractor={item => item.id + Math.random()} 
-                />
+                <ListWrapper>
+                    <FlatList 
+                        data={this.props.order}
+                        renderItem={({item}) => <OrderWithComponents name={item.name} />}
+                        listKey={this.props.order_id}
+                        keyExtractor={item => item.id + Math.random()} 
+                    />
+                </ListWrapper>
                 <CurrentTime>
                     <TextWrapper>
                         <StyledText>CurrentTime:</StyledText>
