@@ -112,9 +112,6 @@ class Order extends Component {
     return (
       <StyledOrder>
         <DoubleClick
-          singleTap={() => {
-            alert("pojedyncze");
-          }}
           doubleTap={() => {
             this.handleIssued();
           }}
